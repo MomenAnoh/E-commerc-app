@@ -1,108 +1,98 @@
-# 🛒 E-Commerce App
+# 🌟 E-Commerce API
 
-## 📌 Introduction
-E-Commerce App is a fully functional online store built with **Laravel**.  
-It includes **product and category management, order handling, OTP authentication, and password management**.  
-The authentication system is powered by **Laravel Sanctum** for secure API authentication.
+## 📌 Overview
+This project is a feature-rich **E-Commerce Application** built with Laravel. It supports **user authentication**, **product & category management**, **shopping cart**, **orders**, **OTP verification**, and **password recovery**.
 
 ---
 
 ## 🚀 Features
-✅ **Authentication using Laravel Sanctum**  
-✅ **Product & Category Management (Create, Update, Delete, View)**  
-✅ **Order Management (Create, Update, Delete Orders)**  
-✅ **User Verification via OTP**  
-✅ **Password Reset, Forgot Password, and Change Password**  
-✅ **Seeder & Factory for Test Data**  
+✅ **User Authentication** (Register, Login, Logout, Profile) via Laravel Sanctum  
+✅ **Product & Category Management**  
+✅ **Shopping Cart** (Add to Cart, Remove from Cart)  
+✅ **Order Management** (Create & Remove Orders)  
+✅ **Password Management** (Forgot Password, Reset Password, Change Password)  
+✅ **Database Seeding & Factories**  
 
 ---
 
-## 🛠️ Technologies Used
-- **Laravel** (PHP Framework)  
-- **MySQL** (Database)  
-- **Laravel Sanctum** (API Authentication)  
-- **JWT** (Token-based Authentication)  
-- **Seeder & Factory** (For Dummy Data)  
-- **Postman** (For API Testing)  
-
----
-
-## 📂 Project Structure
-```
-/app
-   /Http
-      /Controllers  # Handles requests
-      /Requests     # Validates input data
-      /Resources    # Transforms response data
-/config            # Configuration files
-/database
-   /factories      # Generates test data
-   /migrations     # Handles database schema
-   /seeders        # Populates database with test data
-/routes           # Defines API and Web routes
-/storage          # Stores uploaded files and images
+## 🛠 Installation & Setup
+### Step 1️⃣: Clone the Repository
+```bash
+ git clone https://github.com/MomenAnoh/E-commerc-app.git
+ cd E-commerc-app
 ```
 
+### Step 2️⃣: Install Dependencies
+```bash
+ composer install
+ npm install
+```
+
+### Step 3️⃣: Setup Environment
+```bash
+ cp .env.example .env
+```
+Edit `.env` file and configure **Database & Application** settings.
+
+### Step 4️⃣: Generate Application Key
+```bash
+ php artisan key:generate
+```
+
+### Step 5️⃣: Run Migrations & Seed Database
+```bash
+ php artisan migrate --seed
+```
+
+### Step 6️⃣: Start Development Server
+```bash
+ php artisan serve
+```
 ---
 
-## 🔧 Installation & Setup
-Follow these steps to set up and run the project on your local machine:
+## 📡 API Endpoints
+### 🔐 Authentication
+🔹 **Register:** `POST /api/register`  
+🔹 **Login:** `POST /api/login`  
+🔹 **Logout:** `POST /api/logout` (🔒 Requires Authentication)  
+🔹 **User Profile:** `GET /api/profile` (🔒 Requires Authentication)  
 
-1. **Clone the repository**  
-   ```sh
-   git clone https://github.com/MomenAnoh/E-commerce-app.git
-   cd E-commerce-app
-   ```
+### 📂 Categories
+🔹 **Get All Categories:** `GET /api/all-categories`  
+🔹 **Get Category by ID:** `GET /api/one-categore/{id}`  
+🔹 **Create Category:** `POST /api/store-categories` (🔒 Requires Authentication)  
 
-2. **Install dependencies**  
-   ```sh
-   composer install
-   ```
+### 📦 Products
+🔹 **Get All Products:** `GET /api/all-products`  
+🔹 **Get Product by ID:** `GET /api/one-product/{id}`  
+🔹 **Create Product:** `POST /api/store-product` (🔒 Requires Authentication)  
+🔹 **Get Products by Category:** `GET /api/products-of-categore`  
 
-3. **Copy the environment file**  
-   ```sh
-   cp .env.example .env
-   ```
+### 🛒 Shopping Cart
+🔹 **Add to Cart:** `POST /api/addToCart` (🔒 Requires Authentication)  
+🔹 **Remove from Cart:** `DELETE /api/delete-cart-product/{product_id}` (🔒 Requires Authentication)  
 
-4. **Generate application key**  
-   ```sh
-   php artisan key:generate
-   ```
+### 📦 Orders
+🔹 **Create Order:** `POST /api/create-order` (🔒 Requires Authentication)  
+🔹 **Remove Order:** `DELETE /api/remove-order/{order_id}` (🔒 Requires Authentication)  
 
-5. **Set up the database**  
-   - Update `.env` file with your database credentials.  
-   - Run migrations and seeders:  
-     ```sh
-     php artisan migrate --seed
-     ```
-
-6. **Run the development server**  
-   ```sh
-   php artisan serve
-   ```
-
-7. **API Testing (Optional)**  
-   Use **Postman** or any API testing tool to test the endpoints.
+### 🔑 Password Management
+🔹 **Forgot Password:** `POST /api/forgot-password`  
+🔹 **Verify OTP Code:** `POST /api/verify-reset-code`  
+🔹 **Reset Password:** `POST /api/reset-password`  
+🔹 **Change Password:** `POST /api/change-password` (🔒 Requires Authentication)  
 
 ---
 
-## 📌 API Endpoints
-| Method | Endpoint             | Description                 | Authentication |
-|--------|----------------------|-----------------------------|---------------|
-| POST   | `/api/register`      | User registration           | ❌ No         |
-| POST   | `/api/login`         | User login                  | ❌ No         |
-| POST   | `/api/logout`        | Logout user                 | ✅ Yes        |
-| GET    | `/api/products`      | Fetch all products          | ❌ No         |
-| GET    | `/api/categories`    | Fetch all categories        | ❌ No         |
-| POST   | `/api/orders`        | Create a new order          | ✅ Yes        |
-| GET    | `/api/orders`        | Get user orders             | ✅ Yes        |
-| POST   | `/api/password/reset`| Reset password via email    | ❌ No         |
+## 🏗 Technologies Used
+🟢 Laravel  
+🟢 Laravel Sanctum (Authentication)  
+🟢 MySQL (Database)  
+🟢 PHP 8+  
 
 ---
 
-## 📌 Author
-Developed by **Momen Ahmed**  
-GitHub: [MomenAnoh](https://github.com/MomenAnoh)
-
----
+## ✨ Author
+**👨‍💻 Momen Ahmed**  
+🚀 Happy Coding! 🔥
 
