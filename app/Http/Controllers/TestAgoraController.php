@@ -2,22 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Front\AgoraService;
+use App\Services\Agora\AgoraService;
 use Illuminate\Http\Request;
 
 class TestAgoraController extends Controller
 {
-    protected $agoraAppId;
-    protected $agoraAppCertificate;
     protected $agoraService;
     public function __construct(AgoraService $agoraService)
     {
         $this->agoraService = $agoraService;
-
     }
-    public function getAgoraToken()
-    {
+   public function getAgoraToken(Request $request)
+   {
 
-           return $this->agoraService->getAgoraCredentials();
-    }
+    // $request->validate([
+    //     'channel_name' => 'required|string',
+    //     'uid' => 'nullable|integer',
+    // ]);
+        $channelName = 'test_channel';
+        return response()->json([
+            'appId' => env('AGORA_APP_ID'),
+            'channel' =>$channelName,
+            'uid' => $request->uid ?? 0,
+            'token' => $this->agoraService->generateToken(
+                $channelName,
+                $request->uid ?? 0
+            ),
+        ]);
+   }
 }
